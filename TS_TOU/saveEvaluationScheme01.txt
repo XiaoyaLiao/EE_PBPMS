@@ -1,0 +1,40 @@
+ChkBch = numel(Var.Cb{mm})-1 ;
+
+
+while ChkBch > 0
+    NewVar = Var ;
+    [NewCompletion,Improve] = MoveCheck(NewVar,Pr,mm,ChkBch, 1) ;
+    if Improve > 0
+        Var = UpdateVar(Pr,NewVar,mm,ChkBch,NewCompletion) ;
+        
+%     else
+%         [NewCompletion,Improve] = MoveCheck(NewVar,Pr,mm,ChkBch, 0) ;
+%         
+%         if Improve > 0
+%             NewVar = UpdateVar(Pr,NewVar,mm,ChkBch,NewCompletion) ;
+%             
+%             OtherBch = ChkBch - 1 ;
+%             while OtherBch > 0
+%                 [NewCompletion,Improve] = MoveCheck(NewVar,Pr,mm,OtherBch, 0) ;
+%                 if Improve > 0
+%                     NewVar = UpdateVar(Pr,NewVar,mm,OtherBch,NewCompletion) ;
+%                     OtherBch = OtherBch - 1 ;
+%                 else
+%                     break
+%                 end
+%             end
+%             
+%             if NewVar.mObj(mm) <= Var.mObj(mm)
+%                 Var = NewVar ;
+%                 ChkBch = OtherBch ;
+%             end
+%         else
+%             ChkBch = ChkBch - 1 ;
+%             if ChkBch == FirstBatch-1 
+%                 break
+%             end
+%         end
+        
+    end   
+    ChkBch = ChkBch - 1 ;
+end
